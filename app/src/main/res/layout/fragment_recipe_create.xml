@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/title_create_recipe"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/hint_recipe_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Section Ingrédients -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/header_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:text="@string/header_ingredients"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/text_portions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:layout_toEndOf="@id/header_ingredients"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="(pour 4 portions)" />
+
+        <ImageButton
+            android:id="@+id/btn_add_ingredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+
+            android:backgroundTint="@color/purple_500"
+            android:contentDescription="@string/content_add_ingredient"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginBottom="8dp"
+        android:divider="@color/transparent"
+        android:dividerHeight="8dp"
+        tools:listitem="@layout/item_ingredient_create" />
+
+
+    <!-- Section Étapes -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/header_steps"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_add_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/purple_500"
+            android:contentDescription="@string/content_add_step"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_steps"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginBottom="8dp"
+        android:divider="@color/transparent"
+        android:dividerHeight="8dp"
+        tools:listitem="@layout/item_step_create" />
+
+    <Button
+        android:id="@+id/btn_save_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:text="@string/action_save_recipe" />
+
+</LinearLayout>

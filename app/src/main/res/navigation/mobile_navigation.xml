@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_recipes">
+
+    <fragment
+        android:id="@+id/navigation_recipes"
+        android:name="com.example.tp3.ui.RecipesFragment"
+        android:label="@string/title_recipes"
+        tools:layout="@layout/fragment_recipes">
+        <action
+            android:id="@+id/navigation_to_recipe_detail"
+            app:destination="@id/navigation_recipe_detail" />
+        <action
+            android:id="@+id/navigation_to_create_recipe"
+            app:destination="@id/navigation_create_recipe" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_create_recipe"
+        android:name="com.example.tp3.ui.RecipeCreateFragment"
+        android:label="@string/title_create_recipe"
+        tools:layout="@layout/fragment_recipe_create" />
+
+    <fragment
+        android:id="@+id/navigation_recipe_detail"
+        android:name="com.example.tp3.ui.RecipeDetailFragment"
+        android:label="@string/title_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.tp3.ui.SettingsFragment"
+        android:label="@string/title_create_recipe" />
+</navigation>

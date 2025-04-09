@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TP3</string>
+    <string name="title_recipes">Recettes</string>
+    <string name="title_create_recipe">Créer une recette</string>
+    <string name="title_recipe_detail">Détail d\'une recette</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="label_recipe_name">Nom de la recette</string>
+    <string name="pref_title">Affichage des recettes</string>
+    <string name="pref_units_title">Unités de mesure</string>
+    <string name="pref_portions_summary">Pour combien de personne les recettes devraient-elles s\'afficher</string>
+    <string name="pref_protions_title">Nombre de portions</string>
+    <string name="recipes_header">Mes recettes</string>
+    <string name="header_ingredients">Ingrédients</string>
+    <string name="hint_recipe_name">Nom de la recette</string>
+    <string name="hint_ingredient_quantity">#</string>
+    <string name="content_delete_ingredient">Supprimer l\'ingrédient</string>
+    <string name="hint_ingredient_name">Nom de l\'ingrédient</string>
+    <string name="label_empty_recipes">Aucune recette enregistrée</string>
+    <string name="content_add_recipe">Ajouter une recette</string>
+    <string name="content_add_step">Ajouter une étape</string>
+    <string name="content_add_ingredient">Ajouter un ingrédient</string>
+    <string name="header_steps">Étapes de préparation</string>
+    <string name="action_save_recipe">Enregistrer la recette</string>
+    <string name="content_delete_recipe">Supprimer la recette</string>
+    <string name="hint_edit_step_description">Description de l\'étape</string>
+    <string name="content_delete_step">Supprimer l\'étape</string>
+</resources>
