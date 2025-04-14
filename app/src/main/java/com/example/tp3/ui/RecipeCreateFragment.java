@@ -1,5 +1,6 @@
 package com.example.tp3.ui;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SeekBarPreference;
 
 import com.example.tp3.adapters.IngredientsCreateAdapter;
 import com.example.tp3.adapters.StepsCreateAdapter;
@@ -31,6 +34,7 @@ public class RecipeCreateFragment extends Fragment {
     private StepsCreateAdapter stepsAdapter;
     private RecipeStorage recipeStorage;
     private FragmentRecipeCreateBinding binding;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class RecipeCreateFragment extends Fragment {
         steps = new ArrayList<>();
 
         recipeStorage = new RecipeStorage(requireContext());
+
+
+
     }
 
     @Nullable
@@ -66,7 +73,9 @@ public class RecipeCreateFragment extends Fragment {
         binding.btnAddStep.setOnClickListener(v -> addStep());
         binding.btnSaveRecipe.setOnClickListener(v -> saveRecipe());
 
-        int portions = 1;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        int portions = sharedPreferences.getInt("portions",1);
+
         binding.textPortions.setText(String.format(Locale.getDefault(), "(pour %d portions)", portions));
     }
 
@@ -119,7 +128,7 @@ public class RecipeCreateFragment extends Fragment {
             }
         }
 
-        int portions = 1;
+        int portions = sharedPreferences.getInt("portions",1);
         // Créer la recette
         Recipe recipe = new Recipe(recipeName, portions, ingredients, steps);
 

@@ -23,7 +23,6 @@ public class RecipeStorage {
     private static final String TAG = "RecipeStorage";
     private static final String RECIPES_DIR = "recipes";
     private static final String EXTENSION = ".json";
-
     private final Context context;
     private final Gson gson;
 
@@ -63,12 +62,11 @@ public class RecipeStorage {
 
             File file = new File(recipeDirectory,fileName);
             FileInputStream fis = new FileInputStream(file);
-
             byte [] recipeByte  = new byte [(int)file.length()];
             fis.read(recipeByte);
-           String recipe = new String(recipeByte,StandardCharsets.UTF_8);
-           fis.close();
-           return gson.fromJson(recipe,Recipe.class);
+            String recipe = new String(recipeByte,StandardCharsets.UTF_8);
+            fis.close();
+            return gson.fromJson(recipe,Recipe.class);
 
         } catch (FileNotFoundException e) {
             Log.d(TAG,String.format("Le fichier %s n'existe pas",fileName));

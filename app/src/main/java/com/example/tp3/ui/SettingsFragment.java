@@ -3,6 +3,7 @@ package com.example.tp3.ui;
 import android.os.Bundle;
 
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SeekBarPreference;
 
 import com.example.tp3.R;
 

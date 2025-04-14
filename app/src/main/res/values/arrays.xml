@@ -1,3 +1,12 @@
 <resources>
+    <string-array name="unite_type_values">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
+
+    <string-array name="unite_type_entries">
+        <item>@string/unite_type_metric</item>
+        <item>@string/unite_type_imperial</item>
+    </string-array>
 
 </resources>

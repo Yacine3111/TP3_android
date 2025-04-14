@@ -1,3 +1,25 @@
-<PreferenceScreen>
-
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        app:key="recipes_preferences"
+        app:title="@string/preference_recipes_title"
+        >
+        <ListPreference
+            app:key="unite_type"
+            app:title="@string/unite_type_title"
+            app:entries="@array/unite_type_entries"
+            app:entryValues="@array/unite_type_values"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="metric"
+            app:negativeButtonText="@string/neggative_button_text"
+            />
+        <SeekBarPreference
+            app:key="portions"
+            app:title="@string/portions_preference_title"
+            app:min="1"
+            android:max="10"
+            app:defaultValue="1"
+            app:showSeekBarValue="true"
+            />
+    </PreferenceCategory>
 </PreferenceScreen>

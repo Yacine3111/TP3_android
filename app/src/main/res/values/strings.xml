@@ -24,4 +24,10 @@
     <string name="content_delete_recipe">Supprimer la recette</string>
     <string name="hint_edit_step_description">Description de l\'étape</string>
     <string name="content_delete_step">Supprimer l\'étape</string>
+    <string name="preference_recipes_title">Préférence des recettes</string>
+    <string name="unite_type_title">Type d\'untié</string>
+    <string name="unite_type_metric">Métrique</string>
+    <string name="unite_type_imperial">Impériale</string>
+    <string name="neggative_button_text">Annuler</string>
+    <string name="portions_preference_title">Nombre de portions</string>
 </resources>

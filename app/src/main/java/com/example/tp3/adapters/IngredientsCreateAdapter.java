@@ -1,6 +1,7 @@
 package com.example.tp3.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.example.tp3.R;
 import com.example.tp3.models.Ingredient;
@@ -24,11 +26,14 @@ public class IngredientsCreateAdapter extends ArrayAdapter<Ingredient> {
 
     private final boolean useMetric;
 
+    private SharedPreferences sharedPreferences;
+
     public IngredientsCreateAdapter(Context context, List<Ingredient> ingredients) {
         super(context, 0, ingredients);
 
         // Récupérer les préférences d'unités
-        useMetric = true;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        useMetric = sharedPreferences.getString("recipes_preferences", "").equals("metric");
     }
 
 
