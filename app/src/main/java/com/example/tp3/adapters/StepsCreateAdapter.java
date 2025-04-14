@@ -13,13 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.tp3.R;
+import com.example.tp3.databinding.ItemStepCreateBinding;
 import com.example.tp3.models.Step;
 
 import java.util.List;
 import java.util.Locale;
 
 public class StepsCreateAdapter extends ArrayAdapter<Step> {
-
+    private ItemStepCreateBinding binding;
     public StepsCreateAdapter(Context context, List<Step> steps) {
         super(context, 0, steps);
     }
@@ -31,9 +32,11 @@ public class StepsCreateAdapter extends ArrayAdapter<Step> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_step_create, parent, false);
         }
 
-        TextView textStepNumber = convertView.findViewById(R.id.text_step_number);
-        EditText editStepDescription = convertView.findViewById(R.id.edit_step_description);
-        ImageButton btnDeleteStep = convertView.findViewById(R.id.btn_delete_step);
+        binding=ItemStepCreateBinding.bind(convertView);
+
+        TextView textStepNumber = binding.textStepNumber;
+        EditText editStepDescription = binding.editStepDescription;
+        ImageButton btnDeleteStep = binding.btnDeleteStep;
 
         Step step = getItem(position);
         if (step != null) {

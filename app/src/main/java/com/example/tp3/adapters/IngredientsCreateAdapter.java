@@ -16,6 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import com.example.tp3.R;
+import com.example.tp3.databinding.ActivityMainBinding;
+import com.example.tp3.databinding.FragmentRecipeCreateBinding;
+import com.example.tp3.databinding.ItemIngredientCreateBinding;
 import com.example.tp3.models.Ingredient;
 import com.example.tp3.models.Unit;
 
@@ -26,14 +29,13 @@ public class IngredientsCreateAdapter extends ArrayAdapter<Ingredient> {
 
     private final boolean useMetric;
 
-    private SharedPreferences sharedPreferences;
-
+    private ItemIngredientCreateBinding binding;
     public IngredientsCreateAdapter(Context context, List<Ingredient> ingredients) {
         super(context, 0, ingredients);
 
         // Récupérer les préférences d'unités
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        useMetric = sharedPreferences.getString("recipes_preferences", "").equals("metric");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        useMetric = sharedPreferences.getString("unite_type", "").equals("metric");
     }
 
 
@@ -44,10 +46,12 @@ public class IngredientsCreateAdapter extends ArrayAdapter<Ingredient> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_ingredient_create, parent, false);
         }
 
-        EditText editIngredientName = convertView.findViewById(R.id.edit_ingredient_name);
-        EditText editIngredientQuantity = convertView.findViewById(R.id.edit_ingredient_quantity);
-        Spinner spinnerUnit = convertView.findViewById(R.id.spinner_unit);
-        ImageButton btnDeleteIngredient = convertView.findViewById(R.id.btn_delete_ingredient);
+        binding = ItemIngredientCreateBinding.bind(convertView);
+
+        EditText editIngredientName = binding.editIngredientName;
+        EditText editIngredientQuantity = binding.editIngredientQuantity;
+        Spinner spinnerUnit = binding.spinnerUnit;
+        ImageButton btnDeleteIngredient = binding.btnDeleteIngredient;
 
         Ingredient ingredient = getItem(position);
         if (ingredient != null) {

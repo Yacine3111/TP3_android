@@ -11,7 +11,7 @@
             app:entryValues="@array/unite_type_values"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="metric"
-            app:negativeButtonText="@string/neggative_button_text"
+            app:negativeButtonText="@string/negative_button_text"
             />
         <SeekBarPreference
             app:key="portions"

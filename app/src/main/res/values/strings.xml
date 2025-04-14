@@ -28,6 +28,6 @@
     <string name="unite_type_title">Type d\'untié</string>
     <string name="unite_type_metric">Métrique</string>
     <string name="unite_type_imperial">Impériale</string>
-    <string name="neggative_button_text">Annuler</string>
+    <string name="negative_button_text">Annuler</string>
     <string name="portions_preference_title">Nombre de portions</string>
 </resources>
