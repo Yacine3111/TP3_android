@@ -134,6 +134,11 @@ public class IngredientsDetailAdapter extends ArrayAdapter<Ingredient> {
     public void converte(double ratio, Unit unit,String unitString,double quantity, Ingredient ingredient){
         ingredient.setUnit(unit);
         unitString = unit.toString();
+
+        //litre est le seul qu'on doit multiplier pour les metric je vérifie donc si
+        //on convertit à partir de litre.
+        //je prend le ratio pour savoir si on convertit avec des litres, car on passe
+        //les nouvelle unit en param on ne peut donc pas vérifier avec unit
         if (ratio == 3.52) {
             quantity = useMetric ? quantity / ratio : quantity * ratio;
         } else {
