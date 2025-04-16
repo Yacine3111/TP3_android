@@ -31,7 +31,6 @@ public class StepsCreateAdapter extends ArrayAdapter<Step> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_step_create, parent, false);
         }
-
         binding=ItemStepCreateBinding.bind(convertView);
 
         TextView textStepNumber = binding.textStepNumber;
@@ -50,7 +49,6 @@ public class StepsCreateAdapter extends ArrayAdapter<Step> {
                     step.setDescription(editStepDescription.getText().toString());
                 }
             });
-
             // Configurer le bouton de suppression
             btnDeleteStep.setOnClickListener(v -> {
                 Step stepToDelete = getItem(position);
@@ -65,7 +63,6 @@ public class StepsCreateAdapter extends ArrayAdapter<Step> {
                 notifyDataSetChanged();
             });
         }
-
         return convertView;
     }
 }

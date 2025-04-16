@@ -67,7 +67,6 @@ public class RecipeStorage {
             String recipe = new String(recipeByte,StandardCharsets.UTF_8);
             fis.close();
             return gson.fromJson(recipe,Recipe.class);
-
         } catch (FileNotFoundException e) {
             Log.d(TAG,String.format("Le fichier %s n'existe pas",fileName));
         }catch (IOException e){

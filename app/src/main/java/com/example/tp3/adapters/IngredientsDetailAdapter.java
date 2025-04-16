@@ -1,6 +1,7 @@
 package com.example.tp3.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.example.tp3.databinding.ItemIngredientDetailBinding;
 import com.example.tp3.models.Ingredient;
+import com.example.tp3.models.Unit;
 
 import java.util.List;
 import java.util.Locale;
@@ -20,12 +23,15 @@ public class IngredientsDetailAdapter extends ArrayAdapter<Ingredient> {
     private final int prefPortions;
     private final int recipePortions;
 
+
     public IngredientsDetailAdapter(Context context, List<Ingredient> ingredients, int recipePortions) {
         super(context, 0, ingredients);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         // Récupérer les préférences d'unités
-        useMetric = true;
-        prefPortions = 1;
+        useMetric = sharedPreferences.getString("unite_type", "").equals("metric");
+        prefPortions = sharedPreferences.getInt("portions",1);
 
         // Récupérer la portion de la recette
         this.recipePortions = recipePortions;
@@ -64,8 +70,54 @@ public class IngredientsDetailAdapter extends ArrayAdapter<Ingredient> {
 
         String unitString = ingredient.getUnit().toString();
         double quantity = ingredient.getQuantity();
-
         // CONVERSION ICI
+
+        quantity = prefPortions*quantity/recipePortions;
+
+        if(ingredient.getUnit()==Unit.None){
+            return " "+quantity;
+        }
+        else if(useMetric){
+            switch (unitString){
+                case"oz":
+                    converte(28,Unit.Gram,Unit.Gram.toString(),quantity,ingredient);
+                    break;
+
+                case "c. à thé" :
+                    converte(5,Unit.Milliliter,Unit.Milliliter.toString(),quantity,ingredient);
+                    break;
+
+                case "c. à soupe":
+                    converte(15,Unit.Milliliter,Unit.Milliliter.toString(),quantity,ingredient);
+                    break;
+                case "t":
+                    if(quantity<=2){
+                        converte(284,Unit.Milliliter,Unit.Milliliter.toString(),quantity,ingredient);
+                    }else{
+                        converte(3.52,Unit.Liter,Unit.Liter.toString(),quantity,ingredient);
+                    }
+                    break;
+            }
+        }
+        else{
+            switch (unitString){
+                case "g":
+                   converte(28,Unit.Ounce,Unit.Ounce.toString(),quantity,ingredient);
+                    break;
+                case "ml":
+                        if(quantity<=15){
+                            converte(5,Unit.Teaspoon,Unit.Teaspoon.toString(),quantity,ingredient);
+                        } else if (quantity<=60) {
+                            converte(15,Unit.Tablespoon,Unit.Tablespoon.toString(),quantity,ingredient);
+                        }else{
+                            converte(284,Unit.Cup,Unit.Cup.toString(),quantity,ingredient);
+                        }
+                    break;
+                case "l":
+                    converte(3.52,Unit.Cup,Unit.Cup.toString(),quantity,ingredient);
+            }
+        }
+
 
         // Formatter la quantité (avec ou sans décimales selon besoin)
         String quantityFormatted;
@@ -77,5 +129,16 @@ public class IngredientsDetailAdapter extends ArrayAdapter<Ingredient> {
 
         // Retourner la quantité formatée avec l'unité
         return quantityFormatted + (unitString.isEmpty() ? "" : " " + unitString);
+    }
+
+    public void converte(double ratio, Unit unit,String unitString,double quantity, Ingredient ingredient){
+        ingredient.setUnit(unit);
+        unitString = unit.toString();
+        if (ratio == 3.52) {
+            quantity = useMetric ? quantity / ratio : quantity * ratio;
+        } else {
+            quantity = useMetric ? quantity * ratio : quantity / ratio;
+        }
+        ingredient.setQuantity(quantity);
     }
 }
